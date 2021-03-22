@@ -7,7 +7,7 @@ def get_data():
 		{
 			"module_name": "Accounting",
 			"color": "grey",
-			"icon": "octicon octicon-file-directory",
+			"icon": "mega-octicon octicon-credit-card",
 			"type": "module",
 			"label": _("Accounting")
 		}

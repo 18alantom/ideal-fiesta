@@ -1,0 +1,83 @@
+{
+ "actions": [],
+ "autoname": "series:LE.#####",
+ "creation": "2021-03-22 12:22:26.338896",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "account",
+  "against_account",
+  "debit",
+  "credit",
+  "voucher_type"
+ ],
+ "fields": [
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "label": "Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "against_account",
+   "fieldtype": "Data",
+   "label": "Against Account"
+  },
+  {
+   "fieldname": "debit",
+   "fieldtype": "Float",
+   "label": "Debit"
+  },
+  {
+   "fieldname": "credit",
+   "fieldtype": "Float",
+   "label": "Credit"
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Data",
+   "label": "Voucher Type"
+  }
+ ],
+ "in_create": 1,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-03-22 16:56:37.069562",
+ "modified_by": "Administrator",
+ "module": "Accounting",
+ "name": "Ledger Entry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
