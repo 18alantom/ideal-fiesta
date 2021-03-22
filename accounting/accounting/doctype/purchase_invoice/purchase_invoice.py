@@ -80,7 +80,7 @@ class PurchaseInvoice(Document):
         self.set_item_entry_cost()
         self.set_invoice_cost()
 
-    def on_submit(self)
+    def on_submit(self):
         super().on_submit()
         self.add_items_to_inventory()
         self.add_ledger_entries()
