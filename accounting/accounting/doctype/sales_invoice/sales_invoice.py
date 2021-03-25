@@ -21,7 +21,7 @@ class SalesInvoice(Document):
     def validate_item_quantities(self):
         for item_entry in self.items:
             try:
-                inventory_doc = frappe.get_doc("Inventory", item_entry.item)
+                inventory_doc = frappe.get_doc("Inventory",item_entry.item)
             except frappe.DoesNotExistError as error:
                 frappe.throw(f"{item} not available.")
 
@@ -45,13 +45,13 @@ class SalesInvoice(Document):
     def remove_items_from_inventory(self):
         for item_entry in self.items:
             inventory_doc = frappe.get_doc("Inventory", item_entry.item)
-            inventory_doc.quantity = inventory_doc.quantity - quantity
+            inventory_doc.quantity = inventory_doc.quantity - item_entry.quantity
             inventory_doc.save(ignore_permissions=True)
 
     def get_ledger_entry(self, account, against_account, credit, debit):
         return frappe.get_doc(
-            doctype="Ledger Entry",
-            posting_date=self.purchase_date,
+            doctype="GL Entry",
+            posting_date=self.posting_date,
             account=account,
             against_account=against_account,
             credit=credit,
@@ -80,6 +80,5 @@ class SalesInvoice(Document):
         self.set_invoice_cost()
 
     def on_submit(self):
-        super().on_submit()
         self.remove_items_from_inventory()
         self.add_ledger_entries()
