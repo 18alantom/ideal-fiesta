@@ -42,7 +42,7 @@
  "modified": "2021-03-22 14:34:44.525674",
  "modified_by": "Administrator",
  "module": "Accounting",
- "name": "Accounting Entry",
+ "name": "Journal Item",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",

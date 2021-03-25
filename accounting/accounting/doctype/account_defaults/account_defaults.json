@@ -1,71 +1,58 @@
 {
  "actions": [],
- "autoname": "field:item",
- "creation": "2021-03-22 15:43:53.252242",
+ "creation": "2021-03-25 12:01:04.018810",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "item",
-  "quantity",
-  "company"
+  "bank_account",
+  "income_account",
+  "stock_account"
  ],
  "fields": [
   {
-   "fieldname": "item",
+   "fieldname": "bank_account",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Item",
-   "options": "Item",
-   "read_only": 1,
-   "reqd": 1,
-   "unique": 1
-  },
-  {
-   "fieldname": "quantity",
-   "fieldtype": "Float",
-   "in_list_view": 1,
-   "label": "Quantity",
-   "read_only": 1,
+   "label": "Bank Account",
+   "options": "Account",
    "reqd": 1
   },
   {
-   "fieldname": "company",
+   "fieldname": "income_account",
    "fieldtype": "Link",
-   "label": "Company",
-   "options": "Company",
-   "read_only": 1,
+   "in_list_view": 1,
+   "label": "Income Account",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "stock_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Stock Account",
+   "options": "Account",
    "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
+ "issingle": 1,
  "links": [],
- "modified": "2021-03-23 14:10:22.479237",
+ "modified": "2021-03-25 12:20:12.759390",
  "modified_by": "Administrator",
  "module": "Accounting",
- "name": "Inventory",
+ "name": "Account Defaults",
  "owner": "Administrator",
  "permissions": [
   {
    "create": 1,
    "delete": 1,
    "email": 1,
-   "export": 1,
    "print": 1,
    "read": 1,
-   "report": 1,
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "All",
-   "share": 1
   }
  ],
  "sort_field": "modified",

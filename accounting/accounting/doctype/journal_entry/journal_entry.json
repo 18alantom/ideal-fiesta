@@ -8,10 +8,8 @@
  "field_order": [
   "company",
   "posting_date",
-  "reference_number",
-  "section_break_4",
-  "accounting_entries",
-  "amended_from"
+  "transaction_details_break",
+  "journal_items"
  ],
  "fields": [
   {
@@ -30,37 +28,22 @@
    "reqd": 1
   },
   {
-   "fieldname": "reference_number",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Reference Number",
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_break_4",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "accounting_entries",
+   "fieldname": "journal_items",
    "fieldtype": "Table",
-   "label": "Accounting Entries",
-   "options": "Accounting Entry",
+   "label": "Journal Entries",
+   "options": "Journal Item",
    "reqd": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Journal Entry",
-   "print_hide": 1,
-   "read_only": 1
+   "fieldname": "transaction_details_break",
+   "fieldtype": "Section Break",
+   "label": "Entry Details"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-22 14:32:11.020957",
+ "modified": "2021-03-25 13:54:56.313895",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Journal Entry",
