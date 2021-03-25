@@ -37,22 +37,24 @@ class PurchaseInvoice(Document):
 
     def add_items_to_inventory(self):
         for item_entry in self.items:
-            try:
+            # Update quantity
+            if frappe.db.exists("Inventory", item_entry.item):
                 # Update quantity
                 inventory_doc = frappe.get_doc("Inventory", item_entry.item)
                 inventory_doc.quantity = inventory_doc.quantity + quantity
                 inventory_doc.save(ignore_permissions=True)
-
-            except frappe.DoesNotExistError as error:
+            else:
                 # Create new entry
-                inventory_doc = frappe.get_doc(doctype="Inventory", name=item_entry.item)
-                inventory_doc.db_set("quantity", item_entry.quantity)
-                inventory.insert(ignore_permissions=True)
+                inventory_doc = frappe.new_doc(doctype="Inventory")
+                inventory_doc.item = item_entry.item
+                inventory_doc.company = self.company
+                inventory_doc.quantity = item_entry.quantity
+                inventory_doc.insert(ignore_permissions=True)
 
     def get_ledger_entry(self, account, against_account, credit, debit):
         return frappe.get_doc(
-            doctype="Ledger Entry",
-            posting_date=self.purchase_date,
+            doctype="GL Entry",
+            posting_date=self.posting_date,
             account=account,
             against_account=against_account,
             credit=credit,
@@ -81,6 +83,5 @@ class PurchaseInvoice(Document):
         self.set_invoice_cost()
 
     def on_submit(self):
-        super().on_submit()
         self.add_items_to_inventory()
         self.add_ledger_entries()
