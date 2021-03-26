@@ -17,8 +17,7 @@
   "accounts_break",
   "funds_account",
   "column_break_2",
-  "stock_account",
-  "amended_from"
+  "stock_account"
  ],
  "fields": [
   {
@@ -91,15 +90,6 @@
    "label": "Transaction Accounts"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Purchase Invoice",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
    "fieldname": "column_break_0",
    "fieldtype": "Column Break"
   }
@@ -107,7 +97,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-25 13:25:52.178921",
+ "modified": "2021-03-26 14:48:12.984635",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Purchase Invoice",

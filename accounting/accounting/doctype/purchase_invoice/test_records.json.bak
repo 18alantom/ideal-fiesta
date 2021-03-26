@@ -1,0 +1,47 @@
+[
+  {
+    "doctype" : "Purchase Invoice",
+    "company" : "_Test Company",
+    "seller": "_Test Seller 1",
+    "items": [
+      {
+        "doctype" : "Invoice Item",
+        "item" : "_Test Item 1",
+        "quantity": 100,
+        "value": 5000
+      },
+      {
+        "doctype" : "Invoice Item",
+        "item" : "_Test Item 2",
+        "quantity": 0.5,
+        "value": 500
+      }
+      
+    ],
+    "funds_account": "_Test Account _BA",
+    "stock_account": "_Test Account _SA",
+    "posting_date": "2019-01-02"
+  },
+  {
+    "doctype" : "Purchase Invoice",
+    "company" : "_Test Company",
+    "seller": "_Test Seller 2",
+    "items": [
+      {
+        "doctype" : "Invoice Item",
+        "item" : "_Test Item 3",
+        "quantity": 10,
+        "value": 2500
+      },
+      {
+        "doctype" : "Invoice Item",
+        "item" : "_Test Item 4",
+        "quantity": 0.25,
+        "value": 700
+      }
+    ],
+    "funds_account": "_Test Account _BA",
+    "stock_account": "_Test Account _SA",
+    "posting_date": "2019-02-03"
+  }
+]
