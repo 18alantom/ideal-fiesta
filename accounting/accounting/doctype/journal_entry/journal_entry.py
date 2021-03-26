@@ -7,6 +7,11 @@ import frappe
 from frappe.model.document import Document
 
 class JournalEntry(Document):
+    def validate(self):
+        self.validate_journal_items()
+
+    def on_submit(self):
+        self.add_ledger_entries() # General Ledger Entry
 
     def validate_accounting_item_count(self):
         item_count = len(self.journal_items)
@@ -71,9 +76,3 @@ class JournalEntry(Document):
         # Save Entries
         credit_item.insert(ignore_permissions=True)
         debit_item.insert(ignore_permissions=True)
-
-    def validate(self):
-        self.validate_journal_items()
-
-    def on_submit(self):
-        self.add_ledger_entries() # General Ledger Entry

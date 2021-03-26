@@ -7,6 +7,18 @@ import frappe
 from frappe.model.document import Document
 
 class SalesInvoice(Document):
+    def validate(self):
+        self.validate_account_types()
+        self.validate_item_quantities()
+
+    def before_save(self):
+        self.set_item_entry_values() # Value Per Unit 
+        self.set_item_entry_cost()
+        self.set_invoice_cost()
+
+    def on_submit(self):
+        self.remove_items_from_inventory()
+        self.add_ledger_entries()
 
     def validate_account_type(self, account, account_types):
         account_doc = frappe.get_doc("Account", account)
@@ -70,15 +82,3 @@ class SalesInvoice(Document):
         credit_entry.insert(ignore_permissions=True)
         debit_entry.insert(ignore_permissions=True)
 
-    def validate(self):
-        self.validate_account_types()
-        self.validate_item_quantities()
-
-    def before_save(self):
-        self.set_item_entry_values() # Value Per Unit 
-        self.set_item_entry_cost()
-        self.set_invoice_cost()
-
-    def on_submit(self):
-        self.remove_items_from_inventory()
-        self.add_ledger_entries()
