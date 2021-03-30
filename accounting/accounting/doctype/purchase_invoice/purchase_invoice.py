@@ -74,6 +74,8 @@ class PurchaseInvoice(Document):
             credit=credit,
             debit=debit,
             voucher_type="Purchase Invoice",
+            company_name=self.company,
+            voucher_name=self.name,
         )
 
     def add_ledger_entries(self):

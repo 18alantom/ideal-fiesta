@@ -11,45 +11,71 @@
   "against_account",
   "debit",
   "credit",
-  "voucher_type"
+  "voucher_type",
+  "company_name",
+  "voucher_number"
  ],
  "fields": [
   {
    "fieldname": "posting_date",
    "fieldtype": "Date",
-   "label": "Posting Date"
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "reqd": 1
   },
   {
    "fieldname": "account",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Account",
-   "options": "Account"
+   "options": "Account",
+   "reqd": 1
   },
   {
    "fieldname": "against_account",
    "fieldtype": "Data",
-   "label": "Against Account"
+   "in_list_view": 1,
+   "label": "Against Account",
+   "reqd": 1
   },
   {
    "fieldname": "debit",
    "fieldtype": "Float",
-   "label": "Debit"
+   "in_list_view": 1,
+   "label": "Debit",
+   "reqd": 1
   },
   {
    "fieldname": "credit",
    "fieldtype": "Float",
-   "label": "Credit"
+   "label": "Credit",
+   "reqd": 1
   },
   {
    "fieldname": "voucher_type",
    "fieldtype": "Data",
-   "label": "Voucher Type"
+   "label": "Voucher Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company_name",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "voucher_number",
+   "fieldtype": "Data",
+   "label": "Voucher Number",
+   "reqd": 1
   }
  ],
  "in_create": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-23 12:42:15.861931",
+ "modified": "2021-03-31 00:44:38.556232",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "GL Entry",

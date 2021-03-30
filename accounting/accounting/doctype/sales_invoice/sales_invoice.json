@@ -1,6 +1,6 @@
 {
  "actions": [],
- "autoname": "format:SALE-{###}-{item}-{customer}",
+ "autoname": "format:SALE-{###}-{company}",
  "creation": "2021-03-19 14:19:50.226090",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -18,7 +18,8 @@
   "accounts_break",
   "receiving_account",
   "column_break_1",
-  "stock_account"
+  "stock_account",
+  "amended_from"
  ],
  "fields": [
   {
@@ -95,12 +96,21 @@
    "fieldname": "transactee_section",
    "fieldtype": "Section Break",
    "label": "Transactees"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Invoice",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-30 12:47:31.119971",
+ "modified": "2021-03-31 00:46:22.200084",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Sales Invoice",
