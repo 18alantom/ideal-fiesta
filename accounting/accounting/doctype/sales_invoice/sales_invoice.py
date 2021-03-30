@@ -6,13 +6,14 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
+
 class SalesInvoice(Document):
     def validate(self):
         self.validate_account_types()
         self.validate_item_quantities()
 
     def before_save(self):
-        self.set_item_entry_values() # Value Per Unit 
+        self.set_item_entry_values()  # Value Per Unit
         self.set_item_entry_cost()
         self.set_invoice_cost()
 
@@ -33,9 +34,9 @@ class SalesInvoice(Document):
     def validate_item_quantities(self):
         for item_entry in self.items:
             try:
-                inventory_doc = frappe.get_doc("Inventory",item_entry.item)
-            except frappe.DoesNotExistError as error:
-                frappe.throw(f"{item} not available.")
+                inventory_doc = frappe.get_doc("Inventory", item_entry.item)
+            except frappe.DoesNotExistError:
+                frappe.throw(f"{self.item} not available.")
 
             if item_entry.quantity <= 0:
                 frappe.throw(f"{item_entry.item} quantity should be more than 0.")
@@ -68,17 +69,18 @@ class SalesInvoice(Document):
             against_account=against_account,
             credit=credit,
             debit=debit,
-            voucher_type="Purchase Invoice"
+            voucher_type="Purchase Invoice",
         )
 
     def add_ledger_entries(self):
         # Create Ledger Entries
-        credit_entry = self.get_ledger_entry(self.stock_account, self.customer, \
-                credit=self.cost, debit=0.0)
-        debit_entry = self.get_ledger_entry(self.receiving_account, \
-                self.customer, credit=0.0, debit=self.cost)
+        credit_entry = self.get_ledger_entry(
+            self.stock_account, self.customer, credit=self.cost, debit=0.0
+        )
+        debit_entry = self.get_ledger_entry(
+            self.receiving_account, self.customer, credit=0.0, debit=self.cost
+        )
 
         # Insert Ledger Entries
         credit_entry.insert(ignore_permissions=True)
         debit_entry.insert(ignore_permissions=True)
-
