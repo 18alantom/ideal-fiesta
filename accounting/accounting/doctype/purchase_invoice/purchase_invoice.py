@@ -3,8 +3,10 @@
 # For license information, please see license.txt
 
 from __future__ import unicode_literals
+
 import frappe
 from frappe.model.document import Document
+
 
 class PurchaseInvoice(Document):
     def validate(self):
@@ -12,7 +14,7 @@ class PurchaseInvoice(Document):
         self.validate_item_quantities()
 
     def before_save(self):
-        self.set_item_entry_values() # Value Per Unit 
+        self.set_item_entry_values()  # Value Per Unit
         self.set_item_entry_cost()
         self.set_invoice_cost()
 
@@ -53,7 +55,7 @@ class PurchaseInvoice(Document):
             if frappe.db.exists("Inventory", item_entry.item):
                 # Update quantity
                 inventory_doc = frappe.get_doc("Inventory", item_entry.item)
-                inventory_doc.quantity = inventory_doc.quantity + quantity
+                inventory_doc.quantity = inventory_doc.quantity + item_entry.quantity
                 inventory_doc.save(ignore_permissions=True)
             else:
                 # Create new entry
@@ -71,17 +73,18 @@ class PurchaseInvoice(Document):
             against_account=against_account,
             credit=credit,
             debit=debit,
-            voucher_type="Purchase Invoice"
+            voucher_type="Purchase Invoice",
         )
 
     def add_ledger_entries(self):
         # Create Ledger Entries
-        credit_entry = self.get_ledger_entry(self.funds_account, self.seller, \
-                credit=self.cost, debit=0.0)
-        debit_entry = self.get_ledger_entry(self.stock_account, self.seller, \
-                credit=0.0, debit=self.cost)
+        credit_entry = self.get_ledger_entry(
+            self.funds_account, self.seller, credit=self.cost, debit=0.0
+        )
+        debit_entry = self.get_ledger_entry(
+            self.stock_account, self.seller, credit=0.0, debit=self.cost
+        )
 
         # Insert Ledger Entries
         credit_entry.insert(ignore_permissions=True)
         debit_entry.insert(ignore_permissions=True)
-

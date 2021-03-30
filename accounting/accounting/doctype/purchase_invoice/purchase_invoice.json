@@ -1,122 +1,123 @@
 {
- "actions": [],
- "autoname": "format:PRCH-{###}-{item}-{seller}",
- "creation": "2021-03-19 14:30:44.907903",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "section_break_8",
-  "company",
-  "column_break_0",
-  "seller",
-  "items_break",
-  "items",
-  "posting_date",
-  "cost",
-  "accounts_break",
-  "funds_account",
-  "column_break_2",
-  "stock_account"
- ],
- "fields": [
-  {
-   "fieldname": "seller",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Seller",
-   "options": "Seller",
-   "reqd": 1
-  },
-  {
-   "fieldname": "items",
-   "fieldtype": "Table",
-   "label": "Items",
-   "options": "Invoice Item",
-   "reqd": 1
-  },
-  {
-   "fieldname": "cost",
-   "fieldtype": "Currency",
-   "label": "Cost",
-   "non_negative": 1,
-   "print_hide_if_no_value": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_2",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "label": "Company",
-   "options": "Company",
-   "reqd": 1
-  },
-  {
-   "fieldname": "funds_account",
-   "fieldtype": "Link",
-   "label": "Funds Account",
-   "options": "Account",
-   "reqd": 1
-  },
-  {
-   "fieldname": "stock_account",
-   "fieldtype": "Link",
-   "label": "Stock Account",
-   "options": "Account",
-   "reqd": 1
-  },
-  {
-   "fieldname": "section_break_8",
-   "fieldtype": "Section Break",
-   "label": "Transactees"
-  },
-  {
-   "fieldname": "posting_date",
-   "fieldtype": "Date",
-   "label": "Posting Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "items_break",
-   "fieldtype": "Section Break",
-   "label": "Purchase Details"
-  },
-  {
-   "fieldname": "accounts_break",
-   "fieldtype": "Section Break",
-   "label": "Transaction Accounts"
-  },
-  {
-   "fieldname": "column_break_0",
-   "fieldtype": "Column Break"
-  }
- ],
- "index_web_pages_for_search": 1,
- "is_submittable": 1,
- "links": [],
- "modified": "2021-03-26 14:48:12.984635",
- "modified_by": "Administrator",
- "module": "Accounting",
- "name": "Purchase Invoice",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "track_changes": 1
+  "actions": [],
+  "autoname": "format:PRCH-{###}-{item}-{seller}",
+  "creation": "2021-03-19 14:30:44.907903",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "section_break_8",
+    "company",
+    "column_break_0",
+    "seller",
+    "items_break",
+    "items",
+    "posting_date",
+    "cost",
+    "accounts_break",
+    "funds_account",
+    "column_break_2",
+    "stock_account"
+  ],
+  "fields": [
+    {
+      "fieldname": "seller",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Seller",
+      "options": "Seller",
+      "reqd": 1
+    },
+    {
+      "fieldname": "items",
+      "fieldtype": "Table",
+      "label": "Items",
+      "options": "Invoice Item",
+      "reqd": 1
+    },
+    {
+      "fieldname": "cost",
+      "fieldtype": "Currency",
+      "label": "Cost",
+      "non_negative": 1,
+      "print_hide_if_no_value": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "column_break_2",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "label": "Company",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "funds_account",
+      "fieldtype": "Link",
+      "label": "Funds Account",
+      "options": "Account",
+      "reqd": 1
+    },
+    {
+      "fieldname": "stock_account",
+      "fieldtype": "Link",
+      "label": "Stock Account",
+      "options": "Account",
+      "reqd": 1
+    },
+    {
+      "fieldname": "section_break_8",
+      "fieldtype": "Section Break",
+      "label": "Transactees"
+    },
+    {
+      "fieldname": "posting_date",
+      "fieldtype": "Date",
+      "label": "Posting Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "items_break",
+      "fieldtype": "Section Break",
+      "label": "Purchase Details"
+    },
+    {
+      "fieldname": "accounts_break",
+      "fieldtype": "Section Break",
+      "label": "Transaction Accounts"
+    },
+    {
+      "fieldname": "column_break_0",
+      "fieldtype": "Column Break"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "is_submittable": 1,
+  "links": [],
+  "modified": "2021-03-26 14:48:12.984635",
+  "modified_by": "Administrator",
+  "module": "Accounting",
+  "name": "Purchase Invoice",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
 }
+
