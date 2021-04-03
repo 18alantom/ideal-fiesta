@@ -17,7 +17,7 @@ def execute(filters=None):
 
 
 def get_columns_data(statement):
-    columns = ["Account:Data:200", "Amount:Data:200"]
+    columns = ["Account:Data:200", "Amount:Currency:200"]
     by_type = {}
 
     for acc in statement:
