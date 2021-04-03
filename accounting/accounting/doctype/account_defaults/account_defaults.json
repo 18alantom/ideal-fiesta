@@ -6,8 +6,9 @@
  "engine": "InnoDB",
  "field_order": [
   "bank_account",
+  "stock_account",
   "income_account",
-  "stock_account"
+  "expense_account"
  ],
  "fields": [
   {
@@ -33,12 +34,19 @@
    "label": "Stock Account",
    "options": "Account",
    "reqd": 1
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Expense Account",
+   "options": "Account",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2021-03-25 12:20:12.759390",
+ "modified": "2021-04-03 11:59:46.076091",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Account Defaults",
