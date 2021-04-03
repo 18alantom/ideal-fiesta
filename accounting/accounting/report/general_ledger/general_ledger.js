@@ -25,6 +25,15 @@ frappe.query_reports["General Ledger"] = {
       mandatory: true,
       default: frappe.datetime.now_date(),
     },
+    {
+      fieldname: "group_by",
+      label: __("Group By"),
+      fieldtype: "Select",
+      options: ["Default", "Consolidated"],
+      default: "Default",
+      mandatory: true,
+      default: frappe.datetime.now_date(),
+    },
   ],
 };
 

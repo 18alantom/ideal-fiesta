@@ -21,11 +21,14 @@ fields = [
 
 def execute(filters=None):
     validate_filters(filters)
-    records = get_db_records(filters)
-    if len(records) == 0:
-        frappe.throw(_("No values available for set filters"))
+    if filters["group_by"] == "Default":
+        records = get_db_records(filters)
+        if len(records) == 0:
+            frappe.throw(_("No values available for set filters"))
+        data = get_report_data(records)
+    else:
+        data = get_consolidated(filters)
     columns = get_report_columns(filters)
-    data = get_report_data(records)
     return columns, data
 
 
@@ -113,3 +116,30 @@ def f(v):
 def append_last_line(data, debit, credit):
     data.append(["", "Total", f(debit), f(credit), f(debit - credit), "", "", ""])
     data.append(blank_line)
+
+
+def get_consolidated(filters):
+    query = f"""
+    SELECT
+      `tabGL Entry`.posting_date,
+      `tabGL Entry`.account,
+      `tabGL Entry`.debit,
+      `tabGL Entry`.credit,
+      `tabGL Entry`.debit - credit as balance,
+      `tabGL Entry`.voucher_type,
+      `tabGL Entry`.voucher_number,
+      `tabGL Entry`.against_account
+    FROM
+      `tabGL Entry` JOIN `tabAccount`
+    ON
+      `tabGL Entry`.account=`tabAccount`.name
+    WHERE
+      `tabAccount`.company="{filters['company']}"
+      AND
+        `tabGL Entry`.posting_date BETWEEN
+        "{filters['from_date']}"
+        AND
+        "{filters['to_date']}"
+    ORDER BY `tabGL Entry`.posting_date ASC;
+    """
+    return frappe.db.sql(query)
