@@ -29,7 +29,7 @@ class SalesInvoice(Document):
 
     def validate_account_types(self):
         self.validate_account_type(self.stock_account, ["Stock"])
-        self.validate_account_type(self.receiving_account, ["Bank", "Cash"])
+        self.validate_account_type(self.receiving_account, ["Income Account"])
 
     def validate_item_quantities(self):
         for item_entry in self.items:

@@ -13,7 +13,6 @@
   "section_break_8",
   "items",
   "posting_date",
-  "section_break_2",
   "cost",
   "accounts_break",
   "receiving_account",
@@ -78,10 +77,6 @@
    "label": "Sales Details"
   },
   {
-   "fieldname": "section_break_2",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "posting_date",
    "fieldtype": "Date",
    "label": "Posting Date",
@@ -110,7 +105,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-31 00:46:22.200084",
+ "modified": "2021-04-03 11:56:25.451695",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Sales Invoice",
