@@ -7,7 +7,7 @@ import frappe
 from frappe import _
 from frappe.utils import getdate
 
-blank_line = ["", "", 0, 0, 0, "", "", ""]
+blank_line = ["", "", "", "", "", "", "", ""]
 fields = [
     "posting_date",
     "account",
@@ -22,6 +22,8 @@ fields = [
 def execute(filters=None):
     validate_filters(filters)
     records = get_db_records(filters)
+    if len(records) == 0:
+        frappe.throw(_("No values available for set filters"))
     columns = get_report_columns(filters)
     data = get_report_data(records)
     return columns, data
@@ -53,14 +55,14 @@ def get_db_records(filters):
 def get_report_columns(filters):
     currency = frappe.db.get_value("Company", filters["company"], "currency")
     return [
-        "Posting Date",
-        "Account",
-        f"Debit ({currency})",
-        f"Credit ({currency})",
-        f"Balance ({currency})",
-        "Voucher Type",
-        "Voucher No",
-        "Against Account",
+        "Posting Date:Date:100",
+        "Account:Link/Account:150",
+        f"Debit ({currency}):Data:150",
+        f"Credit ({currency}):Data:150",
+        f"Balance ({currency}):Data:150",
+        "Voucher Type:Data:150",
+        "Voucher No:Data:150",
+        "Against Account:Link/Account:150",
     ]
 
 
@@ -82,7 +84,7 @@ def get_report_data(records):
         debit += d
         balance += d - c
 
-        data.append([pd, a, d, c, balance, vt, vn, aa])
+        data.append([pd, a, f(d), f(c), f(balance), vt, vn, aa])
 
     credit_total += credit
     debit_total += debit
@@ -90,11 +92,24 @@ def get_report_data(records):
 
     # Footer Total
     data.append(
-        ["", "Total", debit_total, credit_total, debit_total - credit_total, "", "", ""]
+        [
+            "",
+            "Total",
+            f(debit_total),
+            f(credit_total),
+            f(debit_total - credit_total),
+            "",
+            "",
+            "",
+        ]
     )
     return data
 
 
+def f(v):
+    return frappe.format_value(v, "Currency")
+
+
 def append_last_line(data, debit, credit):
-    data.append(["", "Total", debit, credit, debit - credit, "", "", ""])
+    data.append(["", "Total", f(debit), f(credit), f(debit - credit), "", "", ""])
     data.append(blank_line)
