@@ -18,6 +18,7 @@ def get_children(doctype, parent, company, is_root=False):
 
 
 def _add_balance(accounts):
+
     pass
 
 
@@ -28,6 +29,7 @@ def _get_fields(is_root):
         "account_type",
         "report_type",
         "currency",
+        "is_credit",
     ] + (["parent_account as parent"] if not is_root else [])
 
 

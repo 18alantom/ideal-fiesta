@@ -19,7 +19,7 @@ default_root_accounts = {
     SF: ("Liability", 1, BS),
     EQ: ("Equity", 1, BS),
     IN: ("Income", 1, PL),
-    EX: ("Expense", 0, BS),
+    EX: ("Expense", 0, PL),
 }
 
 default_non_root_accounts = {
