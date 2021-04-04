@@ -8,8 +8,8 @@ import frappe
 from frappe import _
 
 
-def execute(filters=None):
-    records = get_sql_records(filters)
+def execute(filters=None, filter_by_date=True):
+    records = get_sql_records(filters, filter_by_date)
     if len(records) == 0:
         frappe.throw(_("No values available for set filters"))
     accounts = get_sql_records_accounts(filters)
@@ -154,7 +154,7 @@ def get_sql_records_accounts(filters):
     return frappe.db.sql(query)
 
 
-def get_sql_records(filters):
+def get_sql_records(filters, filter_by_date=True):
     query = f"""
     SELECT
         `tabGL Entry`.account,
@@ -170,12 +170,15 @@ def get_sql_records(filters):
         `tabAccount`.company="{filters['company']}"
         AND
         `tabAccount`.report_type="Balance Sheet"
-        AND
-        `tabGL Entry`.posting_date BETWEEN
-            "{filters['from_date']}"
-            AND
-            "{filters['to_date']}"
     """
+    if filter_by_date:
+        query += f"""
+            AND
+            `tabGL Entry`.posting_date BETWEEN
+                "{filters['from_date']}"
+                AND
+                "{filters['to_date']}"
+        """
     return frappe.db.sql(query)
 
 
