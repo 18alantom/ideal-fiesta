@@ -16,5 +16,13 @@ frappe.treeview_settings["Account"] = {
   ],
   onrender: function (node) {
     console.log(node);
+    if (node.data.balance !== undefined) {
+      const suf = node.data.is_credit ? "Cr" : "Dr";
+      $(
+        '<span class="balance-area pull-right">' +
+          `${node.data.currency} ${node.data.balance} ${suf}` +
+          "</span>"
+      ).insertBefore(node.$ul);
+    }
   },
 };
