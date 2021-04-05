@@ -1,0 +1,73 @@
+<h1>Browse {{ company.company_name }}</h1>
+
+<br />
+<div class="card-columns p-4">
+  {% for item in items %}
+  <div class="row mb-8 card p-4" style="width: 360px">
+    <div class="mb-4">
+      <h2>{{ item.item_name }}</h2>
+      <p class="text-muted" style="font-size: 0.75rem;">
+        <b>{{ item.item_group}}</b>
+      </p>
+      <p class="font-weight-light" style="font-size: 0.75rem;">
+       {{company.currency}} {{item.value}} per {{item.unit_of_measure}}
+      </p>
+      <p class="font-weight-light" style="font-size: 0.75rem;">
+       {{item.quantity}} {{item.unit_of_measure}}(s) in stock
+      </p>
+    </div>
+    <div>
+      <p>
+        {{ item.description }}
+      </p>
+    </div>
+    <div class="input-group">
+      <input type="number" class="form-control" value="0" id="{{item.name}}">
+      <div class="input-group-append">
+        <span class="input-group-text">{{item.unit_of_measure}}</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="row mb-8 card p-4 bg-dark" style="width: 360px">
+    <input class="form-control" type="text" placeholder="First Name"
+                  id="customer-first-name" />
+    <input class="form-control mt-4" type="text" placeholder="Last Name"
+                  id="customer-last-name" />
+    <input class="form-control mt-4" type="text" placeholder="Customer Id"
+                  id="customer-id"/>
+    <button class="btn btn-success mt-4 w-100" id="btn-buy">Buy</button>
+  </div>
+</div>
+<script>
+
+  const items = {{ items }}
+  const customerId = document.getElementById("customer-id")
+  const customerFirstName = document.getElementById("customer-first-name")
+  const customerLastName = document.getElementById("customer-last-name")
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if(frappe.is_user_logged_in()) {
+        customerId.value = frappe.get_cookie("user_id")
+    }
+  })
+
+  document.getElementById("btn-buy").addEventListener('click',(e)=>{
+    const itemElements = items
+        .map(item => document.getElementById(item.name))
+        .filter(itemElements => itemElements.value > 0)
+    
+
+    frappe.call("accounting.accounting.doctype.sales_invoice.create_sales_invoice.create_sales_invoice",
+      {
+        company: "{{company.company_name}}",
+        customer: {
+          customer_id: customerId.value,
+          first_name: customerFirstName.value,
+          last_name: customerLastName.value
+        },
+        items: itemElements.map(item => ({name:item.id, quantity:item.value}))
+      }
+      )
+  })
+</script>
