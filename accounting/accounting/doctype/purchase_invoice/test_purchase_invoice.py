@@ -127,7 +127,7 @@ class DocHandler:
                 name=get_account_name(funds_account, company),
                 account_name=funds_account,
                 company=company,
-                account_type="Bank",
+                account_type="Expense Account",
             ),
         )
 
