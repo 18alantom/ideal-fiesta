@@ -14,4 +14,5 @@ create_default_accounts = frappe.get_module(
 
 class Company(Document):
     def after_insert(self):
-        create_default_accounts(self.company_name)
+        pass
+        #  create_default_accounts(self.company_name)

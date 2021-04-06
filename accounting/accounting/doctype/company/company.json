@@ -7,7 +7,8 @@
  "engine": "InnoDB",
  "field_order": [
   "company_name",
-  "currency"
+  "currency",
+  "description"
  ],
  "fields": [
   {
@@ -24,11 +25,16 @@
    "label": "Currency",
    "options": "Currency",
    "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-21 11:34:47.438912",
+ "modified": "2021-04-05 14:15:02.972493",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Company",
