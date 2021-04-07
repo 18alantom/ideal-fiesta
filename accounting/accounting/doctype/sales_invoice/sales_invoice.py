@@ -4,15 +4,16 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe.model.document import Document
+from frappe.website.website_generator import WebsiteGenerator
 
 
-class SalesInvoice(Document):
+class SalesInvoice(WebsiteGenerator):
     def validate(self):
         self.validate_account_types()
         self.validate_item_quantities()
 
     def before_save(self):
+        self.route = self.name.lower().replace(" ", "-")
         self.set_item_entry_values()  # Value Per Unit
         self.set_item_entry_cost()
         self.set_invoice_cost()

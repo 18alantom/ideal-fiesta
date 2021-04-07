@@ -1,0 +1,45 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<h1>{{ company }}</h1>
+<h2>Sales Invoice</h2>
+<br/>
+<div class="row">
+  <div class="col row">
+    <p class="col">Customer Id : </p>
+    <p class="col"><b>{{ customer }}</b></p>
+  </div>
+  <div class="col row">
+    <p>Posting Date : </p>
+    <p class="col"><b>{{ posting_date }}</b></p>
+  </div>
+</div>
+<br/>
+<table class="table w-80">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Item Code</th>
+      <th>Value</th>
+      <th>Quantity</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ item.item }}</td>
+      <td>{{ item.value }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.cost }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<br/>
+<div class="row float-right ">
+  <p>Total Cost : </p>
+  <p class="col"><b>{{ cost }}</b></p>
+</div>
+{% endblock %}

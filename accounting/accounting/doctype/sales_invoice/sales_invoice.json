@@ -18,7 +18,8 @@
   "receiving_account",
   "column_break_1",
   "stock_account",
-  "amended_from"
+  "amended_from",
+  "route"
  ],
  "fields": [
   {
@@ -100,12 +101,18 @@
    "options": "Sales Invoice",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-06 00:57:44.620798",
+ "modified": "2021-04-07 12:19:15.119196",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Sales Invoice",
@@ -134,6 +141,7 @@
    "share": 1
   }
  ],
+ "route": "salesinvoice",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
