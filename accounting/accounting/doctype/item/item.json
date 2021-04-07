@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_guest_to_view": 1,
  "autoname": "format:ITEM-{item_name}-{item_group}-{##}",
  "creation": "2021-03-19 13:01:37.675190",
  "doctype": "DocType",
@@ -12,7 +13,9 @@
   "section_break_4",
   "unit_of_measure",
   "column_break_6",
-  "value"
+  "value",
+  "route",
+  "description"
  ],
  "fields": [
   {
@@ -59,11 +62,22 @@
    "label": "Value Per Unit",
    "non_negative": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "label": "Description"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-19 13:01:37.675190",
+ "modified": "2021-04-05 14:49:01.660867",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Item",
@@ -82,6 +96,7 @@
    "write": 1
   }
  ],
+ "route": "items",
  "sort_field": "modified",
  "sort_order": "DESC",
  "track_changes": 1
