@@ -85,5 +85,6 @@ class SalesInvoice(WebsiteGenerator):
         )
 
         # Insert Ledger Entries
-        credit_entry.insert(ignore_permissions=True)
-        debit_entry.insert(ignore_permissions=True)
+        for gl_entry in [credit_entry, debit_entry]:
+            gl_entry.docstatus = 1
+            gl_entry.insert(ignore_permissions=True, ignore_if_duplicate=True)

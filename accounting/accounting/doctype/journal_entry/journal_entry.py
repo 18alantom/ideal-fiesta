@@ -66,9 +66,10 @@ class JournalEntry(Document):
             debit.debit_in_account,
         )
 
-        # Save Entries
-        credit_item.insert(ignore_permissions=True)
-        debit_item.insert(ignore_permissions=True)
+        # Insert Ledger Items
+        for gl_entry in [credit_item, debit_item]:
+            gl_entry.docstatus = 1
+            gl_entry.insert(ignore_permissions=True, ignore_if_duplicate=True)
 
     def get_credit_item(self):
         return self.get_credit_or_debit_item("credit_in_account")
