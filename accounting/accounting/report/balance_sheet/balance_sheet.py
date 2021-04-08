@@ -170,6 +170,8 @@ def get_sql_records(filters, filter_by_date=True):
         `tabAccount`.company="{filters['company']}"
         AND
         `tabAccount`.report_type="Balance Sheet"
+        AND
+        `tabGL Entry`.docstatus=1
     """
     if filter_by_date:
         query += f"""
