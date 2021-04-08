@@ -10,9 +10,9 @@
   "company",
   "column_break_0",
   "seller",
+  "posting_date",
   "items_break",
   "items",
-  "posting_date",
   "cost",
   "accounts_break",
   "funds_account",
@@ -25,7 +25,7 @@
    "fieldname": "seller",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Seller",
+   "label": "Supplier",
    "options": "Seller",
    "reqd": 1
   },
@@ -39,7 +39,7 @@
   {
    "fieldname": "cost",
    "fieldtype": "Currency",
-   "label": "Cost",
+   "label": "Total Cost",
    "non_negative": 1,
    "print_hide_if_no_value": 1,
    "read_only": 1
@@ -71,8 +71,7 @@
   },
   {
    "fieldname": "section_break_8",
-   "fieldtype": "Section Break",
-   "label": "Transactees"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "posting_date",
@@ -82,13 +81,11 @@
   },
   {
    "fieldname": "items_break",
-   "fieldtype": "Section Break",
-   "label": "Purchase Details"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "accounts_break",
-   "fieldtype": "Section Break",
-   "label": "Transaction Accounts"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "column_break_0",
@@ -107,7 +104,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-31 00:47:02.374998",
+ "modified": "2021-04-08 12:23:20.335664",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Purchase Invoice",

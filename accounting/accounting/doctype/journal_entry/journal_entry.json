@@ -7,9 +7,11 @@
  "engine": "InnoDB",
  "field_order": [
   "company",
+  "column_break_2",
   "posting_date",
   "transaction_details_break",
-  "journal_items"
+  "journal_items",
+  "amended_from"
  ],
  "fields": [
   {
@@ -37,13 +39,26 @@
   {
    "fieldname": "transaction_details_break",
    "fieldtype": "Section Break",
-   "label": "Entry Details"
+   "label": "Accounting Entries"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Journal Entry",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-25 13:54:56.313895",
+ "modified": "2021-04-08 12:26:15.145816",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Journal Entry",
