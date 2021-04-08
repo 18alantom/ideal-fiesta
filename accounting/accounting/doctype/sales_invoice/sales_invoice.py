@@ -22,6 +22,13 @@ class SalesInvoice(WebsiteGenerator):
         self.remove_items_from_inventory()
         self.add_ledger_entries()
 
+    def on_cancel(self):
+        if self.docstatus == 0:
+            return
+
+        self.add_items_to_inventory()
+        self.cancel_ledger_entries()
+
     def validate_account_type(self, account, account_types):
         account_doc = frappe.get_doc("Account", account)
         isnt_valid = account_doc.account_type not in account_types
@@ -62,7 +69,9 @@ class SalesInvoice(WebsiteGenerator):
             inventory_doc.quantity = inventory_doc.quantity - item_entry.quantity
             inventory_doc.save(ignore_permissions=True)
 
-    def get_ledger_entry(self, account, against_account, credit, debit):
+    def get_ledger_entry(
+        self, account, against_account, credit, debit, is_for_cancel=False
+    ):
         return frappe.get_doc(
             doctype="GL Entry",
             posting_date=self.posting_date,
@@ -70,10 +79,27 @@ class SalesInvoice(WebsiteGenerator):
             against_account=against_account,
             credit=credit,
             debit=debit,
-            voucher_type="Purchase Invoice",
+            voucher_type=f"{'Cancel' if is_for_cancel else ''}Sales Invoice",
             company_name=self.company,
             voucher_number=self.name,
         )
+
+    def cancel_ledger_entries(self):
+        credit_entry = self.get_ledger_entry(
+            self.stock_account,
+            self.customer,
+            credit=0.0,
+            debit=self.cost,
+            is_for_cancel=True,
+        )
+        debit_entry = self.get_ledger_entry(
+            self.receiving_account,
+            self.customer,
+            credit=self.cost,
+            debit=0.0,
+            is_for_cancel=True,
+        )
+        insert_ledger_entries(credit_entry, debit_entry)
 
     def add_ledger_entries(self):
         # Create Ledger Entries
@@ -83,7 +109,9 @@ class SalesInvoice(WebsiteGenerator):
         debit_entry = self.get_ledger_entry(
             self.receiving_account, self.customer, credit=0.0, debit=self.cost
         )
+        insert_ledger_entries(credit_entry, debit_entry)
 
+    def insert_ledger_entries(credit_entry, debit_entry):
         # Insert Ledger Entries
         for gl_entry in [credit_entry, debit_entry]:
             gl_entry.docstatus = 1
