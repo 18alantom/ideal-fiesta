@@ -41,7 +41,6 @@
    "fieldtype": "Currency",
    "label": "Total Cost",
    "non_negative": 1,
-   "print_hide_if_no_value": 1,
    "read_only": 1
   },
   {
@@ -104,7 +103,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-08 12:23:20.335664",
+ "modified": "2021-04-08 14:00:36.683709",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Purchase Invoice",
