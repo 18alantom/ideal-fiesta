@@ -5,12 +5,16 @@ frappe.provide("defaults.itemDict");
 
 frappe.ui.form.on("Sales Invoice", {
   setup(frm) {
-    frappe.db.get_doc("Account Defaults").then((doc) => {
-      frm.set_value("receiving_account", doc.receivable_account);
-      frm.set_value("stock_account", doc.stock_account);
-    });
+    if (frm.doc.docstatus === 0) {
+      frappe.db.get_doc("Account Defaults").then((doc) => {
+        frm.set_value("receiving_account", doc.receivable_account);
+        frm.set_value("stock_account", doc.stock_account);
+      });
 
-    frm.set_value("posting_date", frappe.datetime.now_date());
+      frm.set_value("posting_date", frappe.datetime.now_date());
+      frm.set_value("cost", 0.0);
+    }
+
     frappe.db
       .get_list("Item", { fields: ["name", "value"] })
       .then((itemList) => {
@@ -18,9 +22,17 @@ frappe.ui.form.on("Sales Invoice", {
           window.defaults.itemDict[name] = value;
         });
       });
-
-    frm.set_value("posting_date", frappe.datetime.now_date());
-    frm.set_value("cost", 0.0);
+  },
+  refresh(frm) {
+    const { doc } = frm;
+    if (doc.docstatus === 1) {
+      frm.add_custom_button(__("Payment"), () => {
+        console.log("Making Payment");
+        attachDocToWindow(frm);
+        const name = frappe.model.make_new_doc_and_get_name("Payment Entry");
+        frappe.set_route("Form", "Payment Entry", name);
+      });
+    }
   },
 });
 
@@ -74,4 +86,19 @@ function updateItems(frm, cdt, cdn, zero) {
     });
 
   frm.set_value("items", item_list);
+}
+
+function attachDocToWindow(frm) {
+  const { doc } = frm;
+  const tempDoc = {};
+  tempDoc.payment_type = "Receive";
+  tempDoc.party_type = "Customer";
+  tempDoc.party_name = doc.customer;
+  tempDoc.company = doc.company;
+  tempDoc.account_paid_from = doc.receiving_account;
+
+  tempDoc.reference_type = doc.doctype;
+  tempDoc.reference_name = doc.name;
+  tempDoc.total_amount = doc.cost;
+  window.tempDoc = tempDoc;
 }
