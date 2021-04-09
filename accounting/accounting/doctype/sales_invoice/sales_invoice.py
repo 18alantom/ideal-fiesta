@@ -99,7 +99,7 @@ class SalesInvoice(WebsiteGenerator):
             debit=0.0,
             is_for_cancel=True,
         )
-        insert_ledger_entries(credit_entry, debit_entry)
+        self.insert_ledger_entries(credit_entry, debit_entry)
 
     def add_ledger_entries(self):
         # Create Ledger Entries
@@ -109,7 +109,7 @@ class SalesInvoice(WebsiteGenerator):
         debit_entry = self.get_ledger_entry(
             self.receiving_account, self.stock_account, credit=0.0, debit=self.cost
         )
-        insert_ledger_entries(credit_entry, debit_entry)
+        self.insert_ledger_entries(credit_entry, debit_entry)
 
     def insert_ledger_entries(credit_entry, debit_entry):
         # Insert Ledger Entries

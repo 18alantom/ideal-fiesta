@@ -103,7 +103,7 @@ class PurchaseInvoice(Document):
         debit_entry = self.get_ledger_entry(
             self.stock_account, self.seller, credit=0.0, debit=self.cost
         )
-        insert_ledger_entries(credit_entry, debit_entry)
+        self.insert_ledger_entries(credit_entry, debit_entry)
 
     def cancel_ledger_entries(self):
         credit_entry = self.get_ledger_entry(
@@ -120,7 +120,7 @@ class PurchaseInvoice(Document):
             debit=0.0,
             is_for_cancel=True,
         )
-        insert_ledger_entries(credit_entry, debit_entry)
+        self.insert_ledger_entries(credit_entry, debit_entry)
 
     def insert_ledger_entries(credit_entry, debit_entry):
         # Insert Ledger Entries
