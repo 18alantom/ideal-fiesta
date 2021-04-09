@@ -23,7 +23,12 @@ default_root_accounts = {
 }
 
 default_non_root_accounts = {
-    AF: [("Bank Account", "Bank"), ("Cash", "Cash"), ("Stock In Hand", "Stock")],
+    AF: [
+        ("Bank Account", "Bank"),
+        ("Cash", "Cash"),
+        ("Stock In Hand", "Stock"),
+        ("Debtors", "Receivable"),
+    ],
     SF: [("Creditors", "Payable")],
     EQ: [("Capital Stock", "Equity")],
     IN: [("Direct Income", "Income Account")],

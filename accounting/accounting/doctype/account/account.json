@@ -80,7 +80,7 @@
    "fieldname": "account_type",
    "fieldtype": "Select",
    "label": "Account Type",
-   "options": "\nAsset\nLiability\nEquity\nIncome\nExpense\nBank\nCash\nCost of Goods Sold\nEquity\nExpense Account\nFixed Asset\nIncome Account\nPayable\nStock"
+   "options": "\nAsset\nLiability\nEquity\nIncome\nExpense\nBank\nCash\nCost of Goods Sold\nEquity\nExpense Account\nFixed Asset\nIncome Account\nPayable\nReceivable\nStock"
   },
   {
    "fieldname": "column_break_5",
@@ -117,7 +117,7 @@
  "index_web_pages_for_search": 1,
  "is_tree": 1,
  "links": [],
- "modified": "2021-04-02 21:52:30.189358",
+ "modified": "2021-04-09 11:37:43.636182",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Account",
