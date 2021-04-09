@@ -39,7 +39,7 @@ frappe.ui.form.on("Payment Entry", {
           frm
         );
 
-        frappe.db.get_doc("Account Defaults").then((doc) => {
+        frappe.db.get_doc("Default Accounts").then((doc) => {
           if (frm.doc.payment_type === "Pay") {
             frm.set_value("account_paid_from", doc.bank_account);
           } else {

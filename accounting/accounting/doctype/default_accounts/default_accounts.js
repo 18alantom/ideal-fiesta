@@ -1,7 +1,7 @@
 // Copyright (c) 2021, Lin To and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Account Defaults', {
+frappe.ui.form.on('Default Accounts', {
 	// refresh: function(frm) {
 
 	// }

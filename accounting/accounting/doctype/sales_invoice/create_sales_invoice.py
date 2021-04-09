@@ -32,7 +32,7 @@ def check_and_insert_customer(customer):
 
 
 def create_and_submit_sales_invoice_doc(company, customer, items):
-    defaults = frappe.get_doc("Account Defaults")
+    defaults = frappe.get_doc("Default Accounts")
     doc = frappe.get_doc(
         dict(
             doctype="Sales Invoice",

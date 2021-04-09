@@ -65,7 +65,7 @@
  "modified": "2021-04-09 12:47:12.481486",
  "modified_by": "Administrator",
  "module": "Accounting",
- "name": "Account Defaults",
+ "name": "Default Accounts",
  "owner": "Administrator",
  "permissions": [
   {
