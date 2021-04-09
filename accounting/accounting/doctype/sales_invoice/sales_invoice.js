@@ -38,14 +38,17 @@ frappe.ui.form.on("Sales Invoice", {
 
 frappe.ui.form.on("Invoice Item", {
   item(frm, cdt, cdn) {
+    console.log("item update");
     updateItems(frm, cdt, cdn, true);
     updateTotalCost(frm);
   },
   quantity(frm, cdt, cdn) {
+    console.log("quantity update");
     updateItems(frm, cdt, cdn, false);
     updateTotalCost(frm);
   },
   value(frm, cdt, cdn) {
+    console.log("value update");
     updateItems(frm, cdt, cdn, false);
     updateTotalCost(frm);
   },
@@ -73,6 +76,7 @@ function updateItems(frm, cdt, cdn, zero) {
     v = row.value;
   }
 
+  console.log(frappe.get_list("Invoice Item").length);
   const item_list = frappe
     .get_list("Invoice Item")
     .map(({ item, name, quantity, value, cost }) => {
@@ -84,6 +88,7 @@ function updateItems(frm, cdt, cdn, zero) {
       }
       return item_dict;
     });
+  console.log(item_list.length);
 
   frm.set_value("items", item_list);
 }

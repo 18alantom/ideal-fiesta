@@ -69,6 +69,12 @@ class SalesInvoice(WebsiteGenerator):
             inventory_doc.quantity = inventory_doc.quantity - item_entry.quantity
             inventory_doc.save(ignore_permissions=True)
 
+    def add_items_to_inventory(self):
+        for item_entry in self.items:
+            inventory_doc = frappe.get_doc("Inventory", item_entry.item)
+            inventory_doc.quantity = inventory_doc.quantity + item_entry.quantity
+            inventory_doc.save(ignore_permissions=True)
+
     def get_ledger_entry(
         self, account, against_account, credit, debit, is_for_cancel=False
     ):
@@ -111,7 +117,7 @@ class SalesInvoice(WebsiteGenerator):
         )
         self.insert_ledger_entries(credit_entry, debit_entry)
 
-    def insert_ledger_entries(credit_entry, debit_entry):
+    def insert_ledger_entries(self, credit_entry, debit_entry):
         # Insert Ledger Entries
         for gl_entry in [credit_entry, debit_entry]:
             gl_entry.docstatus = 1

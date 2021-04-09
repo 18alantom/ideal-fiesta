@@ -18,14 +18,14 @@ class TestPurchaseInvoice(unittest.TestCase):
         cls.doc_handler = DocHandler()
         for (
             company,
-            seller,
+            supplier,
             items,
             funds_account,
             stock_account,
             posting_date,
         ) in _test_records:
             cls.doc_handler.create_and_insert_purchase_invoice(
-                company, seller, items, funds_account, stock_account, posting_date
+                company, supplier, items, funds_account, stock_account, posting_date
             )
         cls.doc_handler.save_and_submit_docs()
 
@@ -65,17 +65,17 @@ class DocHandler:
         self.main_docs = []
 
     def create_and_insert_purchase_invoice(
-        self, company, seller, items, funds_account, stock_account, posting_date
+        self, company, supplier, items, funds_account, stock_account, posting_date
     ):
         self._handle_purchase_invoice_dependencies(
-            company, seller, items, funds_account, stock_account
+            company, supplier, items, funds_account, stock_account
         )
 
         purchase_invoice_doc = frappe.get_doc(
             dict(
                 doctype="Purchase Invoice",
                 company=company,
-                seller=seller,
+                seller=supplier,
                 items=get_autonamed_items(items),
                 funds_account=get_account_name(funds_account, company),
                 stock_account=get_account_name(stock_account, company),
@@ -105,14 +105,14 @@ class DocHandler:
             purchase_invoice_doc.delete()
 
     def _handle_purchase_invoice_dependencies(
-        self, company, seller, items, funds_account, stock_account
+        self, company, supplier, items, funds_account, stock_account
     ):
         self._check_if_exists_and_insert(
             "Company", dict(name=company, company_name=company)
         )
 
         self._check_if_exists_and_insert(
-            "Seller", dict(name=seller, seller_name=seller)
+            "Supplier", dict(name=supplier, seller_name=supplier)
         )
 
         for item_entry in items:
@@ -159,7 +159,7 @@ class DocHandler:
 _test_records = [
     [
         "_Test Company",
-        "_Test Seller 1",
+        "_Test Supplier 1",
         [
             {
                 "doctype": "Invoice Item",
@@ -180,7 +180,7 @@ _test_records = [
     ],
     [
         "_Test Company",
-        "_Test Seller 2",
+        "_Test Supplier 2",
         [
             {
                 "doctype": "Invoice Item",

@@ -122,7 +122,7 @@ class PurchaseInvoice(Document):
         )
         self.insert_ledger_entries(credit_entry, debit_entry)
 
-    def insert_ledger_entries(credit_entry, debit_entry):
+    def insert_ledger_entries(self, credit_entry, debit_entry):
         # Insert Ledger Entries
         for gl_entry in [credit_entry, debit_entry]:
             gl_entry.docstatus = 1

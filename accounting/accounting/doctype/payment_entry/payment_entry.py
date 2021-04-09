@@ -15,8 +15,6 @@ class PaymentEntry(Document):
     def on_submit(self):
         self.add_ledger_entries()
 
-    # def get_ledger_entry(self, account, against_account, credit, debit):
-
     def get_ledger_entries_for_pay(self):
         credit_entry = self.get_ledger_entry(
             self.account_paid_from,
@@ -59,7 +57,7 @@ class PaymentEntry(Document):
         # Create Ledger Entries
         self.insert_ledger_entries(credit_entry, debit_entry)
 
-    def insert_ledger_entries(credit_entry, debit_entry):
+    def insert_ledger_entries(self, credit_entry, debit_entry):
         # Insert Ledger Entries
         for gl_entry in [credit_entry, debit_entry]:
             gl_entry.docstatus = 1
