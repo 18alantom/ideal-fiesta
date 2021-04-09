@@ -6,7 +6,7 @@ frappe.provide("defaults.itemDict");
 frappe.ui.form.on("Sales Invoice", {
   setup(frm) {
     frappe.db.get_doc("Account Defaults").then((doc) => {
-      frm.set_value("receiving_account", doc.income_account);
+      frm.set_value("receiving_account", doc.receivable_account);
       frm.set_value("stock_account", doc.stock_account);
     });
 

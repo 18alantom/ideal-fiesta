@@ -19,7 +19,8 @@
   "column_break_1",
   "stock_account",
   "amended_from",
-  "route"
+  "route",
+  "is_paid"
  ],
  "fields": [
   {
@@ -105,13 +106,21 @@
    "hidden": 1,
    "label": "Route",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_paid",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Is Paid",
+   "read_only": 1
   }
  ],
  "has_web_view": 1,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-04-08 12:23:31.752024",
+ "modified": "2021-04-09 12:02:34.198710",
  "modified_by": "Administrator",
  "module": "Accounting",
  "name": "Sales Invoice",

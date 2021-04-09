@@ -137,7 +137,7 @@ class DocHandler:
                 name=get_account_name(receiving_account, company),
                 account_name=receiving_account,
                 company=company,
-                account_type="Income Account",
+                account_type="Receivable",
             ),
         )
 

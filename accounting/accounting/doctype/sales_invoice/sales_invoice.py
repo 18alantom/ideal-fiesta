@@ -37,7 +37,7 @@ class SalesInvoice(WebsiteGenerator):
 
     def validate_account_types(self):
         self.validate_account_type(self.stock_account, ["Stock"])
-        self.validate_account_type(self.receiving_account, ["Income Account"])
+        self.validate_account_type(self.receiving_account, ["Receivable"])
 
     def validate_item_quantities(self):
         for item_entry in self.items:
@@ -107,7 +107,7 @@ class SalesInvoice(WebsiteGenerator):
             self.stock_account, self.customer, credit=self.cost, debit=0.0
         )
         debit_entry = self.get_ledger_entry(
-            self.receiving_account, self.customer, credit=0.0, debit=self.cost
+            self.receiving_account, self.stock_account, credit=0.0, debit=self.cost
         )
         insert_ledger_entries(credit_entry, debit_entry)
 

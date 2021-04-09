@@ -36,7 +36,7 @@ class PurchaseInvoice(Document):
 
     def validate_account_types(self):
         self.validate_account_type(self.stock_account, ["Stock"])
-        self.validate_account_type(self.funds_account, ["Expense Account"])
+        self.validate_account_type(self.funds_account, ["Payable"])
 
     def validate_item_quantities(self):
         for item_entry in self.items:
@@ -98,7 +98,7 @@ class PurchaseInvoice(Document):
     def add_ledger_entries(self):
         # Create Ledger Entries
         credit_entry = self.get_ledger_entry(
-            self.funds_account, self.seller, credit=self.cost, debit=0.0
+            self.funds_account, self.stock_account, credit=self.cost, debit=0.0
         )
         debit_entry = self.get_ledger_entry(
             self.stock_account, self.seller, credit=0.0, debit=self.cost
@@ -108,7 +108,7 @@ class PurchaseInvoice(Document):
     def cancel_ledger_entries(self):
         credit_entry = self.get_ledger_entry(
             self.funds_account,
-            self.seller,
+            self.stock_account,
             credit=0.0,
             debit=self.cost,
             is_for_cancel=True,
